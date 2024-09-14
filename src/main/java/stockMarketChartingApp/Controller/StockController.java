@@ -1,5 +1,7 @@
 package stockMarketChartingApp.Controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,13 @@ public class StockController {
     private StockService stockService;
 
     @PostMapping("/add")
-    public ResponseEntity<StockEntity> addStock(@RequestBody StockEntity stockEntity) {
+    public ResponseEntity<List<StockEntity>> addStock(@RequestBody List<StockEntity> stockEntity) {
     	
-        logger.info("Received request to add new stock: {} with symbol: {}", stockEntity.getName(), stockEntity.getSymbol());
+//        logger.info("Received request to add new stock: {} with symbol: {}", stockEntity.getName(), stockEntity.getSymbol());
 
-        StockEntity stockData = stockService.addStock(stockEntity);
+        List<StockEntity> stockData = stockService.addStock(stockEntity);
 
-        logger.info("Successfully saved stock with ID: {} and symbol: {}", stockData.getId(), stockData.getSymbol());
+//        logger.info("Successfully saved stock with ID: {} and symbol: {}", stockData.getId(), stockData.getSymbol());
     	
         return ResponseEntity.ok(stockData);
     }

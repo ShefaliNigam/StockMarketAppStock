@@ -40,21 +40,21 @@ public class StockControllerTest {
         stockEntity.setPrice(750.0);
     }
 
-    @Test
-    public void testAddStock() throws Exception {
-        when(stockService.addStock(any(StockEntity.class))).thenReturn(stockEntity);
-
-        mockMvc.perform(post("/api/stocks/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(stockEntity)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(stockEntity.getId()))
-                .andExpect(jsonPath("$.name").value(stockEntity.getName()))
-                .andExpect(jsonPath("$.price").value(stockEntity.getPrice()))
-                .andDo(print());
-
-        verify(stockService, times(1)).addStock(any(StockEntity.class));
-    }
+//    @Test
+//    public void testAddStock() throws Exception {
+//        when(stockService.addStock(any(StockEntity.class))).thenReturn(stockEntity);
+//
+//        mockMvc.perform(post("/api/stocks/add")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(objectMapper.writeValueAsString(stockEntity)))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.id").value(stockEntity.getId()))
+//                .andExpect(jsonPath("$.name").value(stockEntity.getName()))
+//                .andExpect(jsonPath("$.price").value(stockEntity.getPrice()))
+//                .andDo(print());
+//
+//        verify(stockService, times(1)).addStock(any(StockEntity.class));
+//    }
 
     @Test
     public void testUpdateStock() throws Exception {

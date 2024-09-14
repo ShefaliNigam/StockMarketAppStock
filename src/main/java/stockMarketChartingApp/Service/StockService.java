@@ -1,5 +1,8 @@
 package stockMarketChartingApp.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +25,16 @@ public class StockService {
     private StockRepository stockRepository;
 
     
-    public StockEntity addStock(@Valid StockEntity stockEntity) {
-    	 logger.info("Adding a new stock: {} with symbol: {}", stockEntity.getName(), stockEntity.getSymbol());
+    public List<StockEntity> addStock(@Valid List<StockEntity> stockEntity) {
+    	
+    	List<StockEntity> stocks = new ArrayList<>();
+    	for(StockEntity s: stockEntity) {
+       	 logger.info("Adding a new stock: {} with symbol: {}", s.getName(), s.getSymbol());
+    		StockEntity stock = stockRepository.save(s);
+    		stocks.add(stock);
+    	}
         // Perform any necessary validation or business logic here
-        return stockRepository.save(stockEntity);
+        return stocks;
     }
 
     
